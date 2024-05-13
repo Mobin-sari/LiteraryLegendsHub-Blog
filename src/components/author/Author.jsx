@@ -3,16 +3,16 @@ import { GET_AUTHORS_INFO } from "../../graphql/graphQl";
 import { Avatar, Divider, Grid, Typography } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
+import Loader from "../shared/Loader";
 
 export default function Author() {
   const { loading, data, errors } = useQuery(GET_AUTHORS_INFO);
 
-  if (loading) return <h1>Loading ...</h1>;
+  if (loading) return <Loader />;
   if (errors) return <h1>We have some errors</h1>;
 
   const { authors } = data;
 
-  console.log(data);
   return (
     <Grid
       container
@@ -29,7 +29,7 @@ export default function Author() {
                 textDecoration: "none",
               }}
             >
-              <Avatar src={author.avatar.url} sx={{ marginRight: 2 }} />
+              <Avatar src={author.avatar.url} sx={{ marginLeft: 2 }} />
               <Typography componet="p" variant="p" color="text.scondary">
                 {author.name}
               </Typography>
